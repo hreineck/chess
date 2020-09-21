@@ -86,9 +86,9 @@ class boardState:
 		return true
 			
 func oppositeSide(side):
-	if side == 0:
-		return 6
-	return 0
+	if side == WHITE:
+		return BLACK
+	return WHITE
 			
 func isMoveLegal(state : boardState, new_position : Vector2, piece : Vector2, side, checking):
 	#given a position, return -1 on illegal move, 0 on legal move, or 1 on capture move, 2 on psuedolegal
