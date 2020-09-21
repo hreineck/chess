@@ -65,8 +65,6 @@ class boardState:
 			
 	func copy():
 		#returns a deep copy
-		#this only gets used when actually updating the real board state
-		#not used when calculating moves
 		if tiles == []:
 			return boardState.new()
 		var ret = boardState.new()
