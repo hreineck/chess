@@ -232,8 +232,8 @@ func scoreBoard(state : boardState, side):
 	if state.tiles == []:
 		print("recieved empty board")
 		return -100
-	var white = 0 #current side score
-	var black = 0 #opposing side
+	var white = 0 #white score
+	var black = 0 #black score
 	var white_moves = [[]]
 	var black_moves = [[]]
 	
@@ -304,7 +304,6 @@ func calcBestMoveHelper():
 	#returns the new board state after best move is calculated
 	#iterates through all possible moves and returns the move that gives the best
 	#board state after looking ahead
-	#this could be optimized by first searching "good" moves based on heuristics
 	
 	var list_movable = allLegalMoves(board, turn, false)
 	var moves_ahead = 2
@@ -394,15 +393,8 @@ func allLegalMoves(state: boardState, side, checking = false):
 					var thread = Thread.new()
 					threads.append(thread)
 					thread.start(self, "allLegalHelper", [state, checking, moves, i, j])
-	#				var l = allLegalHelper([state, checking, moves, i, j])
-	#				if l:
-	#					moves.append(l)
 	for t in threads:
 		t.wait_to_finish()
-#		var l = t.wait_to_finish()
-#		if l:
-#			moves.append(l)
-	#print(OS.get_ticks_usec() - time_start)
 	return moves
 	
 func allLegalHelper(args):
